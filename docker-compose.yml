@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+  ksp-luna:
+    image: ghcr.io/lunamultiplayer/lunamultiplayer/server:master
+    volumes:
+      - ksp-luna:/opt/LunaMultiplayer/
+    ports:
+      - 28800:8800/udp
+      - 28900:8900
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=CET
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: 
+          - ${NODE_PLACEMENT}
+
+
+  filebrowser:
+    image: hurlenko/filebrowser
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ksp-luna:/opt/LunaMultiplayer/
+      - filebrowser-config:/config
+    networks:
+      - caddy-public
+    deploy:
+      mode: replicated
+      replicas: 0
+      placement:
+        constraints: 
+          - ${NODE_PLACEMENT}
+      labels:
+        caddy: ${FILEBROWSER_DOMAIN}
+        caddy.reverse_proxy: "{{upstreams 8080}}"
+
+
+volumes:
+  ksp-luna:
+  filebrowser-config:
+
+
+networks:
+  caddy-public:
+    external: true
