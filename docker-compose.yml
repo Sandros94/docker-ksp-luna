@@ -24,7 +24,7 @@ services:
     image: hurlenko/filebrowser
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ksp-luna:/opt/LunaMultiplayer/
+      - ksp-luna:/data/LunaMultiplayer/
       - filebrowser-config:/config
     networks:
       - caddy-public
