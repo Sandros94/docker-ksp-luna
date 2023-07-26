@@ -9,8 +9,8 @@ services:
       - ksp-luna-universe:/LMPServer/Universe
       - ksp-luna-logs:/LMPServer/logs
     ports:
-      - 8800:8800/udp
-      - 8900:8900
+      - 18800:18800/udp # Default 8800
+      - 18900:18900 # Default 8900
     stdin_open: true
     tty: true
     environment:
