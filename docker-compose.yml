@@ -6,8 +6,8 @@ services:
     volumes:
       - ksp-luna:/opt/LunaMultiplayer/
     ports:
-      - 28800:28800/udp
-      - 28900:28900
+      - 8800:8800/udp
+      - 8900:8900
     stdin_open: true
     tty: true
     environment:
