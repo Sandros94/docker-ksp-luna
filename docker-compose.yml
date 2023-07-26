@@ -46,7 +46,7 @@ services:
 
 
 volumes:
-  ksp-luna-configs:
+  ksp-luna-config:
   ksp-luna-plugins:
   ksp-luna-universe:
   ksp-luna-logs:
