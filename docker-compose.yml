@@ -4,7 +4,10 @@ services:
   ksp-luna:
     image: ghcr.io/lunamultiplayer/lunamultiplayer/server:master
     volumes:
-      - ksp-luna:/opt/LunaMultiplayer/
+      - ksp-luna-config:/LMPServer/Config
+      - ksp-luna-plugins:/LMPServer/Plugins
+      - ksp-luna-universe:/LMPServer/Universe
+      - ksp-luna-logs:/LMPServer/logs
     ports:
       - 8800:8800/udp
       - 8900:8900
@@ -24,7 +27,10 @@ services:
     image: hurlenko/filebrowser
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ksp-luna:/data/LunaMultiplayer/
+      - ksp-luna-config:/data/LMPServer/Config
+      - ksp-luna-plugins:/data/LMPServer/Plugins
+      - ksp-luna-universe:/data/LMPServer/Universe
+      - ksp-luna-logs:/data/LMPServer/logs
       - filebrowser-config:/config
     networks:
       - caddy-public
@@ -40,7 +46,10 @@ services:
 
 
 volumes:
-  ksp-luna:
+  ksp-luna-configs:
+  ksp-luna-plugins:
+  ksp-luna-universe:
+  ksp-luna-logs:
   filebrowser-config:
 
 
